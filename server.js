@@ -26,9 +26,9 @@ app.route('/upload')
         var fstream;
         req.pipe(req.busboy);
         req.busboy.on('file', function (fieldname, file, filename) {
-            console.log("Uploading: " + filename);
-
-             file.on('end', function() {
+            console.log("Uploading: " + filename + " --length: " + file);
+              
+             file.on('finish', function() {
                 res.send({
                  "filename":filename,
                  "size": Object.size(file)
