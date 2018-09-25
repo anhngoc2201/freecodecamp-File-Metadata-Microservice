@@ -12,7 +12,8 @@
   "dependencies": {
     "express": "^4.16.3",
     "connect-busboy":"*",
-    "fs-extra":"*"
+    "fs-extra":"*",
+    "busboy":"*
   },
   "engines": {
     "node": "8.x"
