@@ -10,7 +10,9 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "connect-busboy":"*",
+    "fs-extra":"*"
   },
   "engines": {
     "node": "8.x"
