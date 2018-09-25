@@ -13,7 +13,7 @@
     "express": "^4.16.3",
     "connect-busboy":"*",
     "fs-extra":"*",
-    "busboy":"*
+    "busboy":"*"
   },
   "engines": {
     "node": "8.x"

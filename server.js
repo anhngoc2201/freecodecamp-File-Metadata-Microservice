@@ -24,14 +24,17 @@ app.get('/', function(request, response) {
 app.route('/upload')
     .post(function (req, res, next) {
 
+        var upload_filesize = 0;
+        var upload_filename = "";
         
-        
-  
+  console.log(req.headers);
         var busboy = new Busboy({ headers: req.headers });
     busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
       console.log('File [' + fieldname + ']: filename: ' + filename);
+      upload_filename = filename;
       file.on('data', function(data) {
-        console.log('File [' + fieldname + '] got ' + data.length + ' bytes');
+        
+        upload_filesize +=data.length;
       });
       file.on('end', function() {
         console.log('File [' + fieldname + '] Finished');
@@ -42,7 +45,7 @@ app.route('/upload')
     });
     busboy.on('finish', function() {
       console.log('Done parsing form!');
-      res.writeHead(303, { Connection: 'close', Location: '/' });
+      res.send({"filename": upload_filename,"size":upload_filesize});
       res.end();
     });
     req.pipe(busboy);
