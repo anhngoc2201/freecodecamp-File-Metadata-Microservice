@@ -33,8 +33,17 @@ app.route('/upload')
                  "filename":filename,
                  "size": Object.size(file)
                 });
-              });
+              }); 
         });
+   busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated, encoding, mimetype) {
+      console.log('Field [' + fieldname + ']: value: ' + inspect(val));
+    });
+    busboy.on('finish', function() {
+      console.log('Done parsing form!');
+      res.writeHead(303, { Connection: 'close', Location: '/' });
+      res.end();
+    });
+    req.pipe(busboy);
     });
 
 
